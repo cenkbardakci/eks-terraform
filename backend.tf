@@ -1,9 +1,9 @@
 terraform {
     backend "s3" {
-        bucket         = "your-s3-bucket-name"
-        key            = "your-state-file-key"
-        region         = "your-aws-region"
-        dynamodb_table = "your-dynamodb-table-name"
+        bucket         = "back-end-state-tf"
+        key            = "eks-terraform.tfstate"
+        region         = "us-east-1"
+        dynamodb_table = "terraform-state-lock-dynamo"
         encrypt        = true
     }
 }
