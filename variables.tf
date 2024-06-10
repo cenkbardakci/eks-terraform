@@ -23,7 +23,7 @@ variable "subnet_cidrs" {
 variable "availability_zones" {
   description = "List of availability zones"
   type        = list(string)
-  default     = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
+  default     = ["eu-central-1a", "eu-central-1b", "eu-central-1c"]
 }
 
 # Desired number of nodes in the EKS node group
