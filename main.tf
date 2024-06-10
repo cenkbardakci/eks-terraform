@@ -18,13 +18,13 @@ resource "aws_internet_gateway" "igw" {
 
 # Create Subnets
 resource "aws_subnet" "subnet" {
-  for_each                = toset(var.subnet_cidrs)
+  count                   = length(var.subnet_cidrs)
   vpc_id                  = aws_vpc.eks_vpc.id
-  cidr_block              = each.value
-  availability_zone       = element(var.availability_zones, index(var.subnet_cidrs, each.value))
+  cidr_block              = var.subnet_cidrs[count.index]
+  availability_zone       = element(var.availability_zones, count.index)
   map_public_ip_on_launch = true
   tags = {
-    Name = "my_eks_subnet_${index(var.subnet_cidrs, each.value)}"
+    Name = "my_eks_subnet_${count.index}"
   }
 }
 
@@ -40,11 +40,10 @@ resource "aws_route_table" "routetable" {
   }
 }
 
-
 # Associate Route Table with Subnets
 resource "aws_route_table_association" "rta" {
-  for_each       = aws_subnet.subnet
-  subnet_id      = each.value.id
+  count          = length(aws_subnet.subnet)
+  subnet_id      = aws_subnet.subnet[count.index].id
   route_table_id = aws_route_table.routetable.id
 }
 
@@ -68,13 +67,13 @@ resource "aws_iam_role" "eks_cluster_role" {
 
 # Attaching the necessary policies to the EKS cluster role
 resource "aws_iam_role_policy_attachment" "eks_cluster_policy" {
-  for_each   = var.create_eks_cluster ? { "attach" = 1 } : {}
+  count      = var.create_eks_cluster ? 1 : 0
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
   role       = aws_iam_role.eks_cluster_role[0].name
 }
 
 resource "aws_iam_role_policy_attachment" "eks_vpc_resource_controller" {
-  for_each   = var.create_eks_cluster ? { "attach" = 1 } : {}
+  count      = var.create_eks_cluster ? 1 : 0
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSVPCResourceController"
   role       = aws_iam_role.eks_cluster_role[0].name
 }
@@ -88,7 +87,7 @@ resource "aws_security_group" "eks_cluster_sg" {
 
 # EKS Cluster
 resource "aws_eks_cluster" "cluster" {
-  for_each = var.create_eks_cluster ? { "cluster" = 1 } : {}
+  count    = var.create_eks_cluster ? 1 : 0
   name     = var.cluster_name
   role_arn = aws_iam_role.eks_cluster_role[0].arn
   vpc_config {
