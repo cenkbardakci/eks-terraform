@@ -1,9 +1,7 @@
 name: Deploy EKS Cluster
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   terraform:
@@ -29,9 +27,16 @@ jobs:
     - name: Initialize Terraform
       run: terraform init
 
+    - name: Format Terraform
+      run: terraform fmt -check
+
     - name: Plan Terraform
-      run: terraform plan
+      run: |
+        terraform plan -out=tfplan
+        terraform show -json tfplan > tfplan.json
+        terraform graph -draw-cycles -type=plan -json tfplan.json > tfplan.dot
+        dot -Tsvg tfplan.dot -o tfplan.svg
 
     - name: Apply Terraform
-      if: github.ref == 'refs/heads/main'
       run: terraform apply -auto-approve
+      if: github.event_name == 'workflow_dispatch'
