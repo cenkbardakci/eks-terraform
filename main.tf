@@ -10,8 +10,7 @@ resource "aws_vpc" "eks_vpc" {
 
 # Create Internet Gateway
 resource "aws_internet_gateway" "igw" {
-  for_each = aws_vpc.eks_vpc
-  vpc_id   = each.value.id
+  vpc_id = aws_vpc.eks_vpc.id
   tags = {
     Name = "my_eks_igw"
   }
@@ -97,9 +96,9 @@ resource "aws_eks_cluster" "cluster" {
     subnet_ids         = aws_subnet.subnet[*].id
   }
   depends_on = [
-    for aws_iam_role_policy_attachment in aws_iam_role_policy_attachment.eks_cluster_policy : aws_iam_role_policy_attachment,
-    for aws_iam_role_policy_attachment in aws_iam_role_policy_attachment.eks_vpc_resource_controller : aws_iam_role_policy_attachment,
-    for aws_route_table_association in aws_route_table_association.rta : aws_route_table_association
+    aws_iam_role_policy_attachment.eks_cluster_policy,
+    aws_iam_role_policy_attachment.eks_vpc_resource_controller,
+    aws_route_table_association.rta
   ]
 }
 
