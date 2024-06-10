@@ -32,7 +32,7 @@ jobs:
 
     - name: Plan Terraform
       run: |
-        terraform plan -out=tfplan
+        terraform plan -out=tfplan -lock=false
         terraform show -json tfplan > tfplan.json
         terraform graph -draw-cycles -type=plan -json tfplan.json > tfplan.dot
         dot -Tsvg tfplan.dot -o tfplan.svg
