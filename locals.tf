@@ -9,7 +9,7 @@ locals {
 data "aws_availability_zones" "available" {}
 
 data "aws_eks_cluster" "cluster" {
-    name = "eks-workshop"
+    name     = "eks-workshop"
     provider = aws.eks
 }
 
