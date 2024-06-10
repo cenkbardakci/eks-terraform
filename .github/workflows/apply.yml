@@ -34,8 +34,11 @@ jobs:
       run: terraform plan -lock=false
 
   terraform-apply: 
+    name: 'Terraform Apply'
+    needs: terraform
+    runs-on: ubuntu-latest
+    steps:
     - name: Apply Terraform
-      needs: terraform
       run: |
         terraform apply -auto-approve
         echo "Terraform apply completed. Please review changes and manually approve or reject the deployment."
