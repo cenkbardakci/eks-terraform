@@ -32,7 +32,7 @@ jobs:
 
     - name: Plan Terraform
       run: |
-        terraform plan 
+        terraform plan -lock=false
 
     - name: Apply Terraform
       run: terraform apply -auto-approve
