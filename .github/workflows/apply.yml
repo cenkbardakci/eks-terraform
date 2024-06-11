@@ -31,9 +31,9 @@ jobs:
       run: terraform fmt --recursive
 
     - name: Plan Terraform
-      run: terraform plan 
+      run: terraform plan -out=tfplan
 
     - name: Terraform Apply for EKS Cluster
-      run: terraform apply -auto-approve
+      run: terraform apply -auto-approve tfplan
 
 
