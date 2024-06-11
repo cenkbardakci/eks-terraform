@@ -172,7 +172,53 @@ resource "aws_iam_role" "eks_node_role" {
   })
 }
 
+resource "aws_iam_role" "ecr_node_role" {
+  count = var.create_eks_cluster ? 1 : 0
+  name  = "my_ecr_node_role"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect = "Allow",
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        },
+        Action = "sts:AssumeRole"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_policy" "ecr_access_policy" {
+  name = "my_ecr_access_policy"
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect = "Allow",
+        Action = [
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:BatchGetImage",
+          "ecr:BatchCheckLayerAvailability"
+        ],
+        Resource = "*"
+      },
+      {
+        Effect = "Allow",
+        Action = "ecr:GetAuthorizationToken",
+        Resource = "*"
+      }
+    ]
+  })
+}
+
 # Attaching necessary policies to the EKS node role
+resource "aws_iam_role_policy_attachment" "ecr_access_policy_attachment" {
+  count      = var.create_eks_cluster ? 1 : 0
+  role       = aws_iam_role.ecr_node_role.name
+  policy_arn = aws_iam_policy.ecr_access_policy.arn
+}
+
 resource "aws_iam_role_policy_attachment" "eks_worker_node_policy" {
   count      = var.create_eks_cluster ? 1 : 0
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
@@ -190,6 +236,7 @@ resource "aws_iam_role_policy_attachment" "ec2_container_registry_read" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
   role       = aws_iam_role.eks_node_role[0].name
 }
+
 data "aws_eks_cluster" "cluster" {
   name = aws_eks_cluster.cluster[0].name
 }

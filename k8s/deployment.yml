@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: go-hello-world
-        image: 123456789012.dkr.ecr.us-west-2.amazonaws.com/go-hello-world:latest
+        image: 280461030425.dkr.ecr.us-east-1.amazonaws.com/go-hello-world:latest
         ports:
         - containerPort: 8080
         resources:
