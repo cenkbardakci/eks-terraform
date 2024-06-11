@@ -19,6 +19,7 @@ jobs:
     - name: Build the Go app
       run: |
         cd go-hello-world
+        go mod init
         go build -o main .
 
     - name: Configure AWS credentials
