@@ -47,6 +47,10 @@ resource "aws_route_table_association" "rta" {
   route_table_id = aws_route_table.routetable.id
 }
 
+resource "aws_ecr_repository" "go_hello_world" {
+  name = "go-hello-world"
+}
+
 # IAM role for EKS cluster
 resource "aws_iam_role" "eks_cluster_role" {
   count = var.create_eks_cluster ? 1 : 0

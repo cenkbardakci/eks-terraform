@@ -24,3 +24,7 @@ output "eks_cluster_role_arn" {
 output "eks_node_role_arn" {
   value = aws_iam_role.eks_node_role[0].arn
 }
+
+output "ecr_repository_url" {
+  value = aws_ecr_repository.go_hello_world.repository_url
+}
