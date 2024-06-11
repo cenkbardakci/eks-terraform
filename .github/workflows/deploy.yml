@@ -16,10 +16,11 @@ jobs:
       with:
         go-version: 1.18
 
-    - name: Build the Go app
+    - name: Initialize Go module
       run: |
-        go mod init
-        go build -o main .
+        if [ ! -f go.mod ]; then
+          go mod init github.com/cenkbardakci/eks-terraform/go-hello-world
+        fi
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
