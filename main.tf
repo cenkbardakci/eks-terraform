@@ -204,8 +204,8 @@ resource "aws_iam_policy" "ecr_access_policy" {
         Resource = "*"
       },
       {
-        Effect = "Allow",
-        Action = "ecr:GetAuthorizationToken",
+        Effect   = "Allow",
+        Action   = "ecr:GetAuthorizationToken",
         Resource = "*"
       }
     ]
