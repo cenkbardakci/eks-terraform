@@ -21,7 +21,7 @@ jobs:
         if [ ! -f go.mod ]; then
           go mod init github.com/cenkbardakci/eks-terraform/go-hello-world
         fi
-        
+
     - name: Build the Go app
       run: go build -o main .
 
@@ -50,16 +50,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up kubectl
-      uses: aws/setup-kubectl@v1
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
       with:
-        version: 'latest'
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
 
-    - name: Update Kubeconfig
-      env:
-        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+    - name: Set up kubectl
       run: |
-        echo "${KUBE_CONFIG_DATA}" | base64 --decode > $HOME/.kube/config
+        aws eks update-kubeconfig --name my_eks_cluster --region us-east-1
 
     - name: Deploy to Kubernetes
       run: |
