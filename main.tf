@@ -215,7 +215,7 @@ resource "aws_iam_policy" "ecr_access_policy" {
 # Attaching necessary policies to the EKS node role
 resource "aws_iam_role_policy_attachment" "ecr_access_policy_attachment" {
   count      = var.create_eks_cluster ? 1 : 0
-  policy_arn = "arn:aws:iam::aws:policy/my_ecr_access_policy"
+  policy_arn = aws_iam_policy.ecr_access_policy.arn
   role       = aws_iam_role.ecr_node_role[0].name
 }
 
