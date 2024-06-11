@@ -21,6 +21,9 @@ jobs:
         if [ ! -f go.mod ]; then
           go mod init github.com/cenkbardakci/eks-terraform/go-hello-world
         fi
+        
+    - name: Build the Go app
+      run: go build -o main .
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
