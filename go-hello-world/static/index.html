@@ -1,83 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(to right, #a1c4fd, #c2e9fb); /* Updated background gradient with softer blue tones */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            box-sizing: border-box;
-        }
-        .card {
-            background: white;
-            border-radius: 12px; /* More rounded corners */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Smoother shadow */
-            max-width: 900px; /* Increased max width */
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            margin: 20px; /* Added margin for spacing */
-            box-sizing: border-box;
-        }
-        .card img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-        .card-content {
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .card-content h1 {
-            font-size: 2em;
-            margin-bottom: 0.5em;
-        }
-        .card-content p {
-            font-size: 1.2em;
-            margin: 0.5em 0; /* Increased margin */
-        }
-        .card-content a {
-            color: #007BFF;
-            text-decoration: none;
-        }
-        .card-content a:hover {
-            text-decoration: underline;
-        }
-        @media(min-width: 768px) {
-            .card {
-                flex-direction: row;
-            }
-            .card img {
-                width: 350px; /* Increased image width */
-                height: auto;
-            }
-            .card-content {
-                padding: 40px; /* Increased padding */
-            }
-            .card-content h1 {
-                font-size: 2.5em; /* Increased font size */
-            }
-        }
-    </style>
+<title>Cenk Bardakci Resume</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+.w3-row-padding img {margin-bottom: 12px}
+/* Set the width of the sidebar to 120px */
+.w3-sidebar {width: 200px;background: #222;}
+/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+#main {margin-left: 200px}
+/* Remove margins from "page content" on small screens */
+@media only screen and (max-width: 600px) {#main {margin-left: 0}}
+header {
+  background: linear-gradient(to bottom, #000000 50%, #555555 70%, #aaaaaa 85%, #ffffff 100%);
+  color: white; /* Ensures text is visible against the background */
+}
+</style>
 </head>
-<body>
-    <div class="card">
-        <img src="image.jpeg" alt="Cenk Bardakci">
-        <div class="card-content">
-            <h1>Cenk Bardakci</h1>
-            <p><strong>Title:</strong> DevOps Engineer</p>
-            <p><strong>Project Repo Link:</strong> <a href="https://github.com/cenkbardakci/eks-terraform.git" target="_blank">https://github.com/cenkbardakci/eks-terraform.git</a></p>
-        </div>
-    </div>
+<body class="w3-black">
+
+<!-- Icon Bar (Sidebar - hidden on small screens) -->
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+  <!-- Avatar image in top left corner -->
+  <img src="./cenk.jpeg" style="width:100%">
+  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black">
+    <i class="fa fa-home w3-xxlarge"></i>
+    <p>HOME</p>
+  </a>
+  <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-user w3-xxlarge"></i>
+    <p>ABOUT</p>
+  </a>
+  
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-envelope w3-xxlarge"></i>
+    <p>CONTACT</p>
+  </a>
+</nav>
+
+<!-- Navbar on small screens (Hidden on medium and large screens) -->
+<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+  <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+    <a href="#" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
+    <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
+    <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
+  </div>
+</div>
+
+<!-- Page Content -->
+<div class="w3-padding-large"  id="main">
+  <!-- Header/Home -->
+  <header class="w3-container w3-padding-32 w3-center"  id="home"> 
+    <h4 class="w3-jumbo"><span class="w3-hide-small">Hello there 👋</span> </h4>
+    <h4>Cenk Bardakci</h4>
+    <p>SRE/DevOps Engineer</p>
+    <a href="https://github.com/cenkbardakci/eks-terraform" target="_blank">
+        <button class="w3-button w3-light-grey w3-padding-medium w3-section">
+            <i class="fa fa-github w3-xlarge"></i>  Go to Project on Github
+          </button>
+    </a><br>
+
+    <img src="./cenk.jpeg" alt="cenk" class="w3-image" width="400" height="500">
+  </header>
+
+  <!-- About Section -->
+  <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
+    <h2 class="w3-text-light-grey">About me</h2>
+    <hr style="width:200px" class="w3-opacity">
+    <p> I am a SRE/DevOps Engineer with over eight years of experience in cloud technologies, site reliability engineering, and incident management. I am currently working at HUGO BOSS, a global fashion and lifestyle brand, where I manage AWS resources, create immutable infrastructures with Terraform, and troubleshoot issues on cloud and container technologies.
+    </p>
+    
+    <h3 class="w3-padding-16 w3-text-light-grey">My Skills</h3>
+    <p class="w3-wide">Kubernetes</p>
+    <p class="w3-wide">AWS</p>
+    <p class="w3-wide">Terraform</p>
+   <br>
+    
+  <!-- Contact Section -->
+  <div class="w3-padding-64 w3-content w3-text-grey" id="contact">
+    <h2 class="w3-text-light-grey">Contact Me</h2>
+    <hr style="width:200px" class="w3-opacity">
+
+    <div class="w3-section">
+      <p><i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Stuttgart, Germany</p>
+      <p><i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"> </i>  cenkbardakci@gmail.com</p>
+      <p><a href="https://github.com/cenkbardakci" target="_blank">
+        <i class="fa fa-github w3-hover-opacity w3-text-white w3-xxlarge w3-margin-right"></i>
+    </a>  </p>
+    <p><a href="https://www.linkedin.com/in/cenkbardakci/" target="_blank">
+        <i class="fa fa-linkedin w3-hover-opacity w3-text-white w3-xxlarge w3-margin-right"></i>    
+    </a> </p>
+    </div><br>
+    <p>Let's get in touch !</p>
+
+  <!-- End Contact Section -->
+  </div>
+  
+    <!-- Footer -->
+  <footer class="w3-content w3-text-grey w3-xlarge">
+   
+  <!-- End footer -->
+  </footer>
+
+<!-- END PAGE CONTENT -->
+</div>
+
 </body>
 </html>
