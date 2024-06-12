@@ -15,7 +15,7 @@ RUN go mod download
 COPY . .
 
 # Build the Go app
-RUN go build -o main .
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o main .
 
 # Start a new stage from scratch
 FROM alpine:latest
@@ -33,5 +33,3 @@ EXPOSE 8080
 
 # Command to run the executable
 CMD ["./main"]
-
-
