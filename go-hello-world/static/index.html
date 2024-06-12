@@ -4,60 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
         }
-        .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
             width: 100%;
+            display: flex;
+            overflow: hidden;
+        }
+        .card img {
+            width: 300px;
+            height: auto;
+            object-fit: cover;
+        }
+        .card-content {
             padding: 20px;
         }
-        .info {
-            max-width: 50%;
+        .card-content h1 {
+            font-size: 2em;
+            margin-bottom: 0.5em;
         }
-        .info ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .info li {
-            margin-bottom: 10px;
+        .card-content p {
             font-size: 1.2em;
+            margin: 0.3em 0;
         }
-        .info li a {
-            color: blue;
+        .card-content a {
+            color: #007BFF;
             text-decoration: none;
         }
-        .info li a:hover {
+        .card-content a:hover {
             text-decoration: underline;
-        }
-        .image {
-            max-width: 50%;
-        }
-        .image img {
-            max-width: 100%;
-            height: auto;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="info">
-            <ul>
-                <li><strong>Name:</strong> Cenk Bardakci</li>
-                <li><strong>Title:</strong> DevOps Engineer</li>
-                <li><strong>Project Repo Link:</strong> <a href="https://github.com/cenkbardakci/eks-terraform.git" target="_blank">https://github.com/cenkbardakci/eks-terraform.git</a></li>
-            </ul>
-        </div>
-        <div class="image">
-            <img src="image.jpeg" alt="Cenk Bardakci">
+    <div class="card">
+        <img src="image.jpeg" alt="Cenk Bardakci">
+        <div class="card-content">
+            <h1>Cenk Bardakci</h1>
+            <p><strong>Title:</strong> DevOps Engineer</p>
+            <p><strong>Project Repo Link:</strong> <a href="https://github.com/cenkbardakci/eks-terraform.git" target="_blank">https://github.com/cenkbardakci/eks-terraform.git</a></p>
         </div>
     </div>
 </body>
