@@ -28,7 +28,9 @@ This module created for achieving EKS Cluster with Terraform. All enviroments an
 - 4: Trivy should be used for security scanning
 - 5: Helm should be used for Kubernetes Manifests
 - 6: Argo CD should be used for CI/CD
-- 7: Prometheus and Grafana should be used for monitoring
+- 7: Deployment strategies should be implemented and also liveness and readiness probes should be added to deployment. 
+- 8: Pod Scheduling : Node Selector, Taints and Tolerations, Affinity and Anti-Affinity should be implemented.
+- 8: Prometheus and Grafana should be used for monitoring
 
 #### Providers
 
