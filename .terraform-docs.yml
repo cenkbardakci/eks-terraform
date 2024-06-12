@@ -1,0 +1,101 @@
+formatter: "md"
+
+version: ""
+
+header-from: main.tf
+footer-from: changelog.md
+
+recursive:
+  enabled: false
+  path: modules
+
+sections:
+  hide: []
+  show: []
+
+content: |-
+  # EKS CLuster Documentation
+  {{ .Header }}
+
+  ## Overview
+  This module created for achieving EKS Cluster with Terraform. All enviroments and tools chosed by me. You can change them according to your needs.
+
+  ## Steps
+  - 1: Create eks terraform cluster with backed file
+  - 2: Create sample go app and docker file 
+  - 3: Create Kubernetes Manifests for Deployment and Service
+  - 4: Create Github Actions for CI/CD
+  - 5: Create Github Actions for Terraform Apply and Destroy
+  - 6: Create Github Actions for Docker Build and Push
+  - 7: Create Github Actions for Kubernetes Apply and Destroy 
+
+  ## Build List
+  - 1: Clone the repository
+  - 2: Add Secrets for AWS Account into your Github Actions
+  - 3: Run apply Pipeline
+  - 4: Run deploy Pipeline
+  - 5: After you finish examine run destroy Pipeline
+
+  ## What Needs to be Improved
+  - 1: Dynamo Lock Should be implemented
+  - 2: Terragrunt should be used for automation stage of terraform
+  - 3: Kicks and megalinter should be used for linting and formatting
+  - 4: Trivy should be used for security scanning
+  - 5: Helm should be used for Kubernetes Manifests
+  - 6: Argo CD should be used for CI/CD
+  - 7: Prometheus and Grafana should be used for monitoring
+
+  {{ .Providers }}
+  ---
+  {{ .Requirements }}
+  ---
+  {{ .Modules }}
+
+  ---
+  ## Arguments required by Module
+
+  {{ .Inputs }}
+  ---
+
+  ## Examples
+  This strucutred variable holds all informations about frontend module.
+  Example:
+  ### Basic
+  ```terraform
+  {{ include "docs/example-basic.tf" }}
+  ```
+  ---
+  ## Resources and Output attributes by Module
+  ---
+  {{ .Resources }}
+  ---
+  {{ .Outputs }}
+
+  {{ .Footer }}
+
+output:
+  file: README.md
+  mode: replace
+  template: |-
+    <!-- This is a comment -->
+    {{ .Content }}
+    <!-- This is a comment -->
+
+sort:
+  enabled: true
+  by: type
+
+settings:
+  anchor: true
+  color: true
+  default: true
+  description: false
+  escape: true
+  hide-empty: false
+  html: true
+  indent: 4
+  lockfile: true
+  read-comments: true
+  required: true
+  sensitive: true
+  type: true
