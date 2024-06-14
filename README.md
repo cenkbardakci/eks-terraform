@@ -7,16 +7,18 @@ This module created for achieving EKS Cluster with Terraform. All enviroments an
 
 ## Steps
 - 1: Create eks terraform cluster with backed file
-- 2: Create sample go app and docker file 
-- 3: Create Kubernetes Manifests for Deployment and Service
-- 4: Create Github Actions for CI/CD
-- 5: Create Github Actions for Terraform Apply and Destroy
-- 6: Create Github Actions for Docker Build and Push
-- 7: Create Github Actions for Kubernetes Apply and Destroy 
+- 2: Create S3 bucket for state and ecr repo for docker images
+- 3: Create sample go app and docker file 
+- 4: Create Kubernetes Manifests for Deployment and Service
+- 5: Create Github Actions for CI/CD
+- 6: Create Github Actions for Terraform Apply and Destroy
+- 7: Create Github Actions for Docker Build and Push
+- 8: Create Github Actions for Kubernetes Apply and Destroy 
 
 ## Build List
 - 1: Clone the repository
-- 2: Add Secrets for AWS Account into your Github Actions
+- 2: Add Secrets for authorized user of AWS Account into your Github Actions
+- 3: Create S3 bucket for state and ecr repo for docker images change bucket name in main.tf and ecr repo id in Pipeline
 - 3: Run apply Pipeline
 - 4: Run deploy Pipeline
 - 5: After you finish examine run destroy Pipeline
