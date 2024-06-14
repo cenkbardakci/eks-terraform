@@ -26,6 +26,9 @@ resource "aws_subnet" "subnet" {
   tags = {
     Name = "my_eks_subnet_${count.index}"
   }
+  depends_on = [
+    aws_vpc.eks_vpc
+  ]
 }
 
 # Create Route Table
@@ -49,6 +52,7 @@ resource "aws_route_table_association" "rta" {
 
 resource "aws_ecr_repository" "go_hello_world" {
   name = "go-hello-world"
+  force_delete = true
 }
 
 # IAM role for EKS cluster
