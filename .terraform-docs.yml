@@ -33,10 +33,12 @@ content: |-
   ## Build List
   - 1: Clone the repository
   - 2: Add Secrets for authorized user of AWS Account into your Github Actions
-  - 3: Create S3 bucket for state and ecr repo for docker images change bucket name in main.tf and ecr repo id in Pipeline
-  - 4: Run apply Pipeline
-  - 5: Run deploy Pipeline
-  - 6: After you finish examine run destroy Pipeline
+  - 3: Create S3 bucket for state
+  - 4: Run TF Apply Pipeline
+  - 5: Correct ecr registry in deploy yaml
+  - 6: If you had some issues about kubectl get pods command please update-kubeconfig Command: "aws eks --region us-east-1 update-kubeconfig --name my_eks_cluster"
+  - 7: Run deploy Pipeline
+  - 8: After you finish examine run destroy Pipeline
 
   ## What Needs to be Improved
   - 1: Dynamo Lock Should be implemented
@@ -46,7 +48,7 @@ content: |-
   - 5: Helm should be used for Kubernetes Manifests
   - 6: Argo CD should be used for CI/CD
   - 7: Pod Scheduling : Node Selector, Taints and Tolerations, Affinity and Anti-Affinity should be implemented.
-  - 8: Prometheus and Grafana should be used for monitoring
+  - 8: Prometheus or Cloudwatch add on maight be activated for monitoring
 
   {{ .Providers }}
   ---
